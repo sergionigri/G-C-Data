@@ -1,0 +1,25 @@
+{
+    "id": "1A605B72",
+    "path": "~/R/Getting & Cleaning Data/G&C Data/run_analysis.R",
+    "project_path": "run_analysis.R",
+    "type": "r_source",
+    "hash": "2603005202",
+    "contents": "",
+    "dirty": false,
+    "created": 1612629277426.0,
+    "source_on_save": false,
+    "relative_order": 3,
+    "properties": {
+        "tempName": "Untitled1",
+        "cursorPosition": "106,64",
+        "scrollLine": "76"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1612639218,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1612639218181,
+    "read_only": false,
+    "read_only_alternatives": []
+}
