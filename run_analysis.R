@@ -87,7 +87,8 @@ meansstdslabeled <- inner_join(activity_labels, meansstds, by = c("V1" = "V1...2
 # end of task 3 --> Uses descriptive activity names to name the activities in the data set (meansstdslabeled)
 
 collabels <- features[columnfilter,2]
-meansstdslabeled %>% setnames(4:89, collabels) %>% setnames(1:3, c("activity", "activity_label", "subject"))
+meansstdslabeled %>% setnames(4:89, collabels) %>% setnames(1:3, c("activity", "activity_label", "subject")) %>% setDT
+meansstdslabeled <- meansstdslabeled[,activity:= NULL]
 
 # end of task 4 --> Appropriately labels the data set with descriptive variable names
 
@@ -96,12 +97,14 @@ write_delim(meansstdslabeled, "~/R/Getting & Cleaning Data/G&C Data/UCI HAR Data
 summadataset <- meansstdslabeled
 summadataset$subject <- as.character(summadataset$subject)
 
-meandataset <- summadataset %>% group_by(summadataset$activity_label,summadataset$subject) %>% summarise_if(is.numeric, mean) %>%
-rename('activity_label' = 'summadataset$activity_label') %>% rename('subject' = 'summadataset$subject') 
-meandataset$subject <- as.numeric(meandataset$subject)
-meandataset <- arrange(meandataset, activity, subject)
+meandataset <- summadataset %>% group_by(summadataset$activity_label,summadataset$subject) %>% 
+        summarise_if(is.numeric, mean) %>% 
+        rename('activity_label' = 'summadataset$activity_label') %>% rename('subject' = 'summadataset$subject') 
 
-write.table(meandataset, file = "~/R/Getting & Cleaning Data/G&C Data/UCI HAR Dataset/Merged/finalset.txt", row.names = FALSE )
+        meandataset$subject <- as.numeric(meandataset$subject)
+        meandataset <- arrange(meandataset, activity_label, subject)
+
+write.table(meandataset, file = "~/R/Getting & Cleaning Data/G&C Data/finalset.txt", row.names = FALSE )
 
 # end of task 5 --> From the data set in step 4, creates a second, independent tidy data set with the average of each 
 #                   variable for each activity and each subject.
